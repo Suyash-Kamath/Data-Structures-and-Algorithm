@@ -63,7 +63,7 @@ int main()
 }
 
 // s.c is O(3N) => O(N)
-// T.C => node oes once into bfs , and runs all its neighbours  , it runs on all its degrees , I can say that O(N+2E)
+// T.C => node goes once into bfs , and runs all its neighbours  , it runs on all its degrees , I can say that O(N+2E)
 // as for every node it will traverse all its neibouring nodes
 
 /*
