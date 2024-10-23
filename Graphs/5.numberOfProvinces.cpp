@@ -113,3 +113,6 @@ int main() {
 
     return 0;
 }
+
+// S.C is O(N)
+// T.c is O(N) + O(N+2E)
