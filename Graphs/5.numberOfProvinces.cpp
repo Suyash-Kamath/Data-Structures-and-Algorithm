@@ -116,3 +116,75 @@ int main() {
 
 // S.C is O(N)
 // T.c is O(N) + O(N+2E)
+
+
+// BFS
+
+/*
+
+#include<iostream>
+#include<vector>
+#include<queue>
+
+using namespace std;
+
+void bfs(int node , vector<int>adjList[],vector<int>&visited){
+    visited[node]=1;
+    queue<int>q;
+    q.push(node);
+    
+    while(!q.empty()){
+        int nodes = q.front();
+        q.pop();
+        for(auto it:adjList[nodes]){
+            if(!visited[it]){
+                q.push(it);
+                visited[it] = 1;
+            }
+        }
+    }
+    
+    
+}
+
+int findCount(int V, vector<vector<int>>&isConnected){
+    //convert into adjList;
+    
+    vector<int>adjList[V];
+    vector<int>visited(V,0);
+    
+    for(int i =0;i<V;i++){
+        for(int j =0;j<V;j++){
+            if(isConnected[i][j]==1 && i!=j){
+                adjList[i].push_back(j);
+                adjList[j].push_back(i);
+            }
+        }
+    }
+    
+    int count =0;
+    
+    for(int i =0;i<V;i++){
+        if(!visited[i]){
+            count++;
+            bfs(i,adjList,visited);
+        }
+    }
+    return count;
+}
+
+int main(){
+    
+    vector<vector<int>>isConnected = {
+        {1,1,0},{1,1,0},{0,0,1}
+    };
+    
+    int V = isConnected.size();
+    
+    int result = findCount(V,isConnected);
+    
+    cout<<result;
+    
+    return 0;
+}
+ */
