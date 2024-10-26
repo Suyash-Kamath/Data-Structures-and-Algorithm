@@ -1,0 +1,18 @@
+
+Visited arrays (or visited sets) are essential in graph traversal algorithms, such as Depth-First Search (DFS) and 
+Breadth-First Search (BFS), for several important reasons:
+
+1. Prevent Cycles
+Graphs can contain cycles, which means that a node might be revisited multiple times during traversal.
+If we don't keep track of which nodes we've already visited, the traversal could enter an infinite loop, 
+continually revisiting the same nodes.
+
+2. Ensure Each Node is Processed Once
+Using a visited array ensures that each node is processed only once.
+This is crucial for correctly calculating properties like connectivity, shortest paths, 
+or finding specific structures (like connected components) in the graph. Without a visited check, we might end up with inaccurate results.
+
+3. Optimize Performance
+By marking nodes as visited, we can skip unnecessary processing of nodes that have
+already been traversed. This reduces the overall time complexity of the traversal, especially in 
+dense graphs where many edges connect nodes.
