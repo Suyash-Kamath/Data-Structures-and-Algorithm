@@ -1,0 +1,143 @@
+// DFS
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+    
+    void dfs(int row, int col, vector<vector<int>>& ans, int ini, vector<vector<int>>& image, int newColor) {
+        ans[row][col] = newColor;
+        
+        int n = image.size();
+        int m = image[0].size();
+        
+        vector<pair<int,int>> direction = {
+          {-1,0}, {1,0}, {0,1}, {0,-1}  
+        };
+        
+        for(auto d : direction) {
+            int nrow = row + d.first;
+            int ncol = col + d.second;
+            
+            if(nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && ans[nrow][ncol] == ini) {
+                dfs(nrow, ncol, ans, ini, image, newColor);
+            }
+        }
+    }
+    
+  public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        vector<vector<int>> ans = image;
+        int ini = image[sr][sc];
+        
+        // Add check to avoid infinite loop
+        if (ini == newColor) return ans;
+        
+        dfs(sr, sc, ans, ini, image, newColor);
+        
+        return ans;
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<vector<int>> image = {
+        {1, 1, 1},
+        {1, 1, 0},
+        {1, 0, 1}
+    };
+    int sr = 1, sc = 1, newColor = 2;
+
+    vector<vector<int>> result = sol.floodFill(image, sr, sc, newColor);
+
+    cout << "Flood filled image:\n";
+    for (const auto& row : result) {
+        for (int pixel : row) {
+            cout << pixel << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
+
+
+/*
+BFS
+
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+class Solution {
+  public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        vector<vector<int>> ans = image;
+        int n = image.size();
+        int m = image[0].size();
+        int ini = image[sr][sc];
+
+        if (ini == newColor) return image; 
+        
+        // Initialize the queue
+        queue<pair<int,int>> q;
+        q.push({sr, sc});
+        
+        // Define direction vectors
+        vector<pair<int,int>> direction = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1}
+        };
+        
+        // Process pixels in the queue
+        while (!q.empty()) {
+            int row = q.front().first;
+            int col = q.front().second;
+            q.pop();
+            
+            // Change color for the current pixel
+            ans[row][col] = newColor;
+            
+            // Explore all four directions
+            for (auto d : direction) {
+                int nrow = row + d.first;
+                int ncol = col + d.second;
+                
+                // Check bounds and whether the pixel has the initial color
+                if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && ans[nrow][ncol] == ini) {
+                    q.push({nrow, ncol});
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
+
+int main() {
+    Solution solution;
+    vector<vector<int>> image = {
+        {1, 1, 0},
+        {1, 1, 0},
+        {0, 0, 0}
+    };
+    int sr = 1, sc = 1, newColor = 2;
+
+    vector<vector<int>> result = solution.floodFill(image, sr, sc, newColor);
+
+    // Output the result
+    for (const auto& row : result) {
+        for (int color : row) {
+            cout << color << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+// T.C is O(NM) + O(4NM)
+
+ */
