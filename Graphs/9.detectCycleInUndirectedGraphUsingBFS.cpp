@@ -68,3 +68,72 @@ int main() {
 }
 // T.C : O(N+2E) + O(N)
 // SC : O(N)
+
+
+
+// DFS Approach
+/*
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    bool dfs(int node, int parent, vector<int>& vis, vector<vector<int>>& adj) {
+        vis[node] = 1;
+        for (auto it : adj[node]) {
+            if (!vis[it]) {
+                if (dfs(it, node, vis, adj) == true) {
+                    return true;
+                }
+            } else if (it != parent) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(vector<vector<int>>& adj) {
+        int V = adj.size();
+        vector<int> vis(V, 0);
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                if (dfs(i, -1, vis, adj) == true) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+int main() {
+    int V, E;
+    cout << "Enter number of vertices and edges: ";
+    cin >> V >> E;
+    
+    // Initialize the adjacency list
+    vector<vector<int>> adj(V);
+    
+    cout << "Enter edges (u v) for each edge:" << endl;
+    for (int i = 0; i < E; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u); // Undirected graph, so add both ways
+    }
+    
+    Solution solution;
+    if (solution.isCycle(adj)) {
+        cout << "Cycle detected in the graph." << endl;
+    } else {
+        cout << "No cycle detected in the graph." << endl;
+    }
+    
+    return 0;
+}
+
+
+ */
