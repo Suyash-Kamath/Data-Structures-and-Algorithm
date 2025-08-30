@@ -48,3 +48,6 @@ int main()
 
     return 0;
 }
+
+// T.C is O(N+2E) => function for single node it is called + traverse it's neighbour..fir every node , summation of degrees it will be
+// S.C is O(N) +O(N) + Recurive  = O(N) 

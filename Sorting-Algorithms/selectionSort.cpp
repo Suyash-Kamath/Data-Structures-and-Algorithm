@@ -40,4 +40,4 @@ int main() {
     return 0;
 }
 
-// T.C is O(n^2)
+// T.C is O(n^2)..this is the best , average , and worst complexity

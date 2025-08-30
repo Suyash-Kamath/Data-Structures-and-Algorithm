@@ -1,0 +1,164 @@
+Here's a well-structured **note** combining:
+
+* your code example
+* your doubts
+* and explanations related to OOP, memory, and access modifiers in C++.
+
+---
+
+## 📘 C++ OOP Notes – Class, Object, Access Modifier, Memory
+
+---
+
+### ✅ Code Example:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Hero {
+public:
+    char name[100];     // public property
+private:
+    int health;         // private property
+public:
+    char level;         // public property
+    
+    void print() {
+        cout << level << endl;
+    }
+};
+
+int main() {
+    Hero suyash;
+    suyash.health = 70; // ❌ Error: 'health' is private in this context
+    suyash.level = 'A'; // ✅ Allowed, level is public
+    cout << "health is :" << suyash.health << endl; // ❌ Error again
+    cout << "print level: " << suyash.level << endl;
+
+    return 0;
+}
+```
+
+---
+
+### ❓ What are the issues here?
+
+* The line `suyash.health = 70;` causes a **compilation error** because:
+
+  * `health` is marked **private**.
+  * **Private members** can't be accessed **outside the class** directly.
+
+---
+
+### 🧠 What is OOP?
+
+**OOP (Object-Oriented Programming)** is a programming paradigm where everything revolves around **objects**.
+
+#### 🔹 Object:
+
+* Real-world entity.
+* Has **state/properties** and **behavior**.
+
+**Example:**
+
+```cpp
+// Game character example:
+Hero → name: Paul, health: 70, level: A  ← (Properties)
+      attack(), dance(), defend()       ← (Behaviors)
+```
+
+---
+
+### 🧱 Class vs Object:
+
+| Term       | Description                                                           |
+| ---------- | --------------------------------------------------------------------- |
+| **Class**  | User-defined datatype. Like a blueprint or template.                  |
+| **Object** | Instance of a class. Memory is allocated only when object is created. |
+
+---
+
+### 🧮 Memory Allocation in Class/Object
+
+* If you **don't create any object**, no memory is allocated.
+* When you write:
+
+```cpp
+Hero h1;
+```
+
+Memory is allocated for its members:
+
+* `char name[100]` → 100 bytes
+* `int health` → 4 bytes
+* `char level` → 1 byte
+* Likely padding → for alignment
+* 📌 Total size may be **more than 105 bytes**, depending on compiler padding rules.
+
+#### ℹ️ Empty Class:
+
+Even an empty class like:
+
+```cpp
+class Empty {};
+Empty e;
+```
+
+Will take **1 byte** in memory — so that the object has a **unique address** (for tracking).
+
+---
+
+### 🔒 Default Access Modifier in C++
+
+| Type     | Default Access Modifier |
+| -------- | ----------------------- |
+| `class`  | `private`               |
+| `struct` | `public`                |
+
+That's why this:
+
+```cpp
+class Hero {
+    int health;
+};
+```
+
+is the same as:
+
+```cpp
+class Hero {
+private:
+    int health;
+};
+```
+
+If you want to make members accessible from outside, declare them `public`:
+
+```cpp
+class Hero {
+public:
+    int health;
+};
+```
+
+---
+
+### ✅ Final Suggestion
+
+If you want to allow `suyash.health = 70;`, change your class like this:
+
+```cpp
+class Hero {
+public:
+    char name[100];
+    int health;        // now public
+    char level;
+
+    void print() {
+        cout << level << endl;
+    }
+};
+```
+
+---

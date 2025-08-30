@@ -1,0 +1,121 @@
+what is OOPs
+-Programming paradigm where things revolve around object
+object ->entity -> state/properties and behaviour , e.g Laptop , Camera
+we want program to be more close to real world , so that programs's readability,manageability and extensibility increase
+
+e.g game's hero
+
+hero -> name ->paul, health ->70 , level-> A
+these are the properties
+
+behaviour is attack karnaa , dance,defense
+
+class is a user-defined datatype just as inbuilt datatype like int,char,float 
+
+object is instance of class
+
+
+
+-----------------------------
+
+empty class instantiate , system said property nahi hai lekin tera identification keliye , tera track rakhne keliye 1 deta hu so 1 byte of memory is allocated
+
+
+-----------------------------
+
+by default aapke class ke andhar access modifier private lagaa hota hai
+
+In C++, the default access modifier in a class is private.
+
+
+
+
+isliye use karo aisa
+
+ class Hero{
+
+
+    public:
+    int health;
+}
+
+
+--------------
+
+setter ka use set and condition daalne keliye , means specific user set
+
+
+
+padding and greedy alignment 
+
+
+
+dynamic allocation 
+
+int *i = new int
+
+
+
+Hero a 
+
+this is static
+
+
+for dynamically
+
+Hero *a = new Hero()
+
+
+
+variable scoping 
+
+
+in parameterise , isliye this->health=health, this points to current object
+
+
+
+
+agar aap ek bhi custom constructor likhte hai toh system ka contructor hutt jayega
+
+
+
+Copy constructor
+
+why this give error when custom copy constructor created
+
+Hero(Hero temp){} bhai dekho , agar mene Hero R(S) kiya , toh pass by value me copy banti hai , temp is copy , means copy constructor call karte ho and infinte loop sa ho jata hai
+
+why I did not get the error here
+
+Hero(Hero& temp){
+
+}
+
+pass by reference
+
+
+so copy constructor me pass by reference bhejnaa please
+
+
+----------------
+
+deep and shallow copy
+
+default copy constructor => shallow copy karta hai
+
+
+
+
+
+
+   char *temp = new char [strlen(temp.name)+1];
+
+   +1 is because of null character
+
+
+
+   // const keyword and how it is used in object creation and how can we use in data member 
+   // const type functions
+
+   //initialisation list
+
